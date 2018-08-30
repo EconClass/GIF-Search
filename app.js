@@ -1,9 +1,11 @@
+// Initial Conditions
 var express = require('express');
 var exphbs = require('express-handlebars');
 var app = express();
 var http = require('http');
 var giphy = require('giphy-api')();
 
+// Middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
@@ -12,10 +14,11 @@ app.listen(3000, function () {
   console.log('Gif Search listening on port localhost:3000!');
 });
 
+// Routes
 app.get('/', function (req, res) {
-    let s_term = req.query.term || "funny dogs"
-  giphy.search(req.query.term, function (err, response) {
-    res.render('home', {gifs: response.data});
+    let searchterm = req.query.term || "funny dogs"
+    giphy.search(searchterm, function (err, response) {
+        res.render('home', {gifs: response.data});
   });
 })
 // app.get('/', function (req, res) {
