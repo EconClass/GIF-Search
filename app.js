@@ -12,7 +12,7 @@ app.get('/', function (req, res) {
     giphy.search(searchterm, function (err, response) {
         res.render('home', {gifs: response.data});
     });
-})
+});
 
 // Middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
